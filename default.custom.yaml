@@ -1,0 +1,13 @@
+patch:
+  
+  menu/page_size: 9                       # 设置每页显示候选词数量
+  # 输入方案切换热键设置
+  switcher/hotkeys:
+    - "Control+F4"                     # 使用 Ctrl+` 切换输入方案，禁用 F4
+
+  ascii_composer/good_old_caps_lock: true # Caps Lock 键仅切换大小写
+
+  # 快捷键绑定设置
+  key_binder/bindings:
+    - { when: paging, accept: comma, send: Page_Up }        # , 键上翻页
+    - { when: has_menu, accept: period, send: Page_Down }   # . 键下翻页
