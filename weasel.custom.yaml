@@ -1,10 +1,13 @@
 # weasel.custom.yaml - 小狼毫输入法微信风格配置
-show_notifications: false                   # 是否显示状态变化的通知：true；false；option_list（方案内的开头 option）
+
 
 patch:
+
+  show_notifications: false                   # 是否显示状态变化的通知：true；false；option_list（方案内的开头 option）
+
   # 特定应用程序设置
-  app_options/photoshop.exe:    # Photoshop 的特定设置
-    ascii_mode: true            # 启动时默认使用英文输入模式
+  # app_options/photoshop.exe:    # Photoshop 的特定设置
+  #   ascii_mode: true            # 启动时默认使用英文输入模式
     
   # 界面样式设置
   style/+:
