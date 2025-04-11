@@ -39,10 +39,10 @@ patch:
     # - { when: always, toggle: ascii_mode, accept: Control+Shift+2 }             # 切换中英
     # - { when: always, toggle: ascii_mode, accept: Control+Shift+at }            # 切换中英
     - { when: always, toggle: ascii_punct, accept: Control+Shift+3 }              # 切换中英标点
-    - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign }     # 切换中英标点
+    # - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign }     # 切换中英标点
     - { when: always, toggle: traditionalization, accept: Control+Shift+4 }       # 切换简繁
-    - { when: always, toggle: traditionalization, accept: Control+Shift+dollar }  # 切换简繁
-    # - { when: always, toggle: full_shape, accept: Control+Shift+5 }             # 切换全半角
+    # - { when: always, toggle: traditionalization, accept: Control+Shift+dollar }  # 切换简繁
+    - { when: always, toggle: full_shape, accept: Control+Shift+5 }             # 切换全半角
     # - { when: always, toggle: full_shape, accept: Control+Shift+percent }       # 切换全半角
 
     # emacs_editing:
@@ -85,3 +85,88 @@ patch:
     - {accept: KP_Add,      send: plus,     when: composing}
     - {accept: KP_Subtract, send: minus,    when: composing}
     - {accept: KP_Divide,   send: slash,    when: composing}
+
+  ###################################################################################
+
+
+# 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。
+# 写在 default.yaml 里，方便多个方案引用，就是不用每个方案都写一遍了。
+
+
+# 标点符号
+# 设置为一个映射，就自动上屏；设置为多个映射，如 '/' : [ '/', ÷ ] 则进行复选。
+#   full_shape: 全角没改，使用预设值
+#   half_shape: 标点符号全部直接上屏，和 macOS 自带输入法的区别是
+#              '|' 是半角的，
+#              '~' 是半角的，
+#              '`'（反引号）没有改成 '·'（间隔号）。
+punctuator:
+  digit_separators: ",.:"  # 在此处指定的字符，在数字后被输入，若再次输入数字，则连同数字直接上屏；若双击，则恢复映射。 # librime >= 28a234f
+  # digit_separator_action: commit  # 关闭上述行为 librime >= 1.13.1
+  full_shape:
+    ' ' : { commit: '　' }
+    ',' : { commit: ， }
+    '.' : { commit: 。 }
+    '<' : [ 《, 〈, «, ‹ ]
+    '>' : [ 》, 〉, », › ]
+    '/' : [ ／, ÷ ]
+    '?' : { commit: ？ }
+    ';' : { commit: ； }
+    ':' : { commit: ： }
+    '''' : { pair: [ '‘', '’' ] }
+    '"' : { pair: [ '“', '”' ] }
+    '\' : [ 、, ＼ ]
+    '|' : [ ·, ｜, '§', '¦' ]
+    '`' : ｀
+    '~' : ～
+    '!' : { commit: ！ }
+    '@' : [ ＠, ☯ ]
+    '#' : [ ＃, ⌘ ]
+    '%' : [ ％, '°', '℃' ]
+    '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
+    '^' : { commit: …… }
+    '&' : ＆
+    '*' : [ ＊, ·, ・, ×, ※, ❂ ]
+    '(' : （
+    ')' : ）
+    '-' : －
+    '_' : ——
+    '+' : ＋
+    '=' : ＝
+    '[' : [ 【, 「, 〔, ［ ]
+    ']' : [ 】, 」, 〕, ］ ]
+    '{' : [ 『, 〖, ｛ ]
+    '}' : [ 』, 〗, ｝ ]
+  half_shape:
+    ',' : '，'
+    '.' : '。'
+    '<' : '《'
+    '>' : '》'
+    '/' : ['/', '、']
+    '?' : '？'
+    ';' : '；'
+    ':' : '：'
+    '''' : { pair: [ '‘', '’' ] }
+    '"' : { pair: [ '“', '”' ] }
+    '\' : '、'
+    '|' : '|'
+    '`' : '`'
+    '~' : '~'
+    '!' : '！'
+    '@' : '@'
+    '#' : '#'
+    '%' : '%'
+    '$' : '¥'
+    '^' : '……'
+    '&' : '&'
+    '*' : '*'
+    '(' : '（'
+    ')' : '）'
+    '-' : '-'
+    '_' : ——
+    '+' : '+'
+    '=' : '='
+    '[' : '【'
+    ']' : '】'
+    '{' : '「'
+    '}' : '」'
