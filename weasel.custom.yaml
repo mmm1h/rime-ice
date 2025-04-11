@@ -1,0 +1,49 @@
+# weasel.custom.yaml - 小狼毫输入法微信风格配置
+show_notifications: false                   # 是否显示状态变化的通知：true；false；option_list（方案内的开头 option）
+
+patch:
+  # 特定应用程序设置
+  app_options/photoshop.exe:    # Photoshop 的特定设置
+    ascii_mode: true            # 启动时默认使用英文输入模式
+    
+  # 界面样式设置
+  style/+:
+    label_format: "%s"          # 候选项序号格式
+    inline_preedit: true        # 启用内嵌编辑模式
+    font_point: 12                           # 全局字体字号
+    label_font_point: 12                     # 标签字体字号，不设定 fallback 到 font_point
+    comment_font_point: 10                   # 注释字体字号，不设定 fallback 到 font_point
+    horizontal: true            # 使用横向候选栏
+    color_scheme: wechat        # 使用微信主题配色
+    
+    # 布局设置
+    layout:
+      max_height: 0             # 最大高度（0表示不限制）
+      max_width: 1200           # 最大宽度
+      min_width: 10             # 最小宽度
+      margin_x: 10              # 水平边距
+      margin_y: 8               # 垂直边距
+      candidate_spacing: 24     # 候选项间距
+      hilite_spacing: 6         # 高亮项间距
+      hilite_padding: 3         # 高亮项内边距
+      hilite_padding_x: 5       # 高亮项水平内边距
+      corner_radius: 8          # 窗口圆角半径
+      round_corner: 8           # 内部元素圆角
+      shadow_radius: 4          # 阴影半径
+
+  # 微信风格配色方案
+  preset_color_schemes/+:
+    wechat:
+      name: "微信／Wechat"                    # 主题名称
+      text_color: 0x424242                   # 普通文字颜色（深灰）
+      label_color: 0x999999                  # 序号颜色（浅灰）
+      back_color: 0xFFFFFF                   # 背景颜色（白色）
+      border_color: 0xFFFFFF                 # 边框颜色（白色）
+      comment_text_color: 0x999999           # 注释文字颜色（浅灰）
+      candidate_text_color: 0x3c3c3c         # 候选项文字颜色（深灰）
+      hilited_comment_text_color: 0xFFFFFF   # 高亮注释文字颜色（白色）
+      hilited_back_color: 0x79af22           # 高亮背景色（微信绿）
+      hilited_text_color: 0xFFFFFF           # 高亮文字颜色（白色）
+      hilited_label_color: 0xFFFFFF          # 高亮序号颜色（白色）
+      hilited_candidate_back_color: 0x79af22 # 高亮候选项背景色（微信绿）
+      shadow_color: 0x20000000               # 阴影颜色（20%透明度的黑色）
